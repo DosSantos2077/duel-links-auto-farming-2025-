@@ -103,8 +103,8 @@ while True:
                 while True:
                     pa.click(x=pos_x + new_pos, y=init_y)
                     time.sleep(0.1)
-                    pa.click(x=pos_x + new_pos, y=init_y)
-                    time.sleep(1)
+                    #pa.click(x=pos_x + new_pos, y=init_y)
+                    #time.sleep(1)
 
                     
                     
@@ -120,20 +120,20 @@ while True:
                         monster_exist = True
                     
                     
-                    pos = imagesearch(folder+"set.png")
+                    #pos = imagesearch(folder+"set.png")
                     # pos = imagesearch_loop_timeout(folder+"set.png", 0.1, 1.0)
-                    if (pos[0] > -1):
-                        pos2 = imagesearch_loop_timeout(folder+"equip.png", 0.1, 1.0)
-                        if pos2[0] > -1:
-                            equip_counter += 1
-                            counter -= 1
-                        else:
-                            click_image(folder+"set.png", pos, "left", 0.2)
-                            # wait action button to be show
-                            pa.click(x=620, y=820)
-                            imagesearch_loop(folder+"action.png", 0.1)
-                            counter = 0
-                            max_counter -= 1
+                    #if (pos[0] > -1):
+                        #pos2 = imagesearch_loop_timeout(folder+"equip.png", 0.1, 1.0)
+                        #if pos2[0] > -1:
+                            #equip_counter += 1
+                            #counter -= 1
+                        #else:
+                            #click_image(folder+"set.png", pos, "left", 0.2)
+                            ## wait action button to be show
+                            #pa.click(x=620, y=820)
+                            #imagesearch_loop(folder+"action.png", 0.1)
+                            #counter = 0
+                            #max_counter -= 1
                     
                     if equip_counter > 0 and monster_exist:
                         recheck = True
@@ -169,6 +169,7 @@ while True:
             # Click action button
             if pos[0] > -1:
                 click_image(folder+"action.png", pos, "left", 0.2)
+                time.sleep(0.4)
                 # print("Action button clicked")
                 # Find Battle button
                 pos = imagesearch_loop_timeout(folder+"battle_phase.png", 0.2, 5.0)
