@@ -8,13 +8,13 @@ duel_counter = 0
 while True:
 
     # Find gate button
-    pos = imagesearch_loop(folder+"gate.png", 1)
-    print("Gate button found : ", pos[0], pos[1])
+    #pos = imagesearch_loop(folder+"gate.png", 1)
+    #print("Gate button found : ", pos[0], pos[1])
 
     # Click gate button
-    if pos[0] != -1:
-        click_image(folder+"gate.png", pos, "left", 2)
-    print("Gate button clicked")
+    #if pos[0] != -1:
+        #click_image(folder+"gate.png", pos, "left", 2)
+    #print("Gate button clicked")
 
     # Find duel button #1
     pos = imagesearch_loop(folder+"duel.png", 0.3)
@@ -25,14 +25,7 @@ while True:
         click_image(folder+"duel.png", pos, "left", 0.5)
     print("Duel button clicked")
 
-    # Find character (Example : Aster Phoenix)
-    pos = imagesearch_loop(folder+"char_"+character+".png", 0.3)
-    print("Character found : ", pos[0], pos[1])
-
-    # Click character
-    if pos[0] != -1:
-        click_image(folder+"char_"+character+".png", pos, "left", 2)
-    print("Character clicked")
+    
 
     # Find duel button #2
     pos = imagesearch_loop(folder+"duel.png", 0.3)
@@ -73,33 +66,7 @@ while True:
                 pa.click(x=620, y=820)
                 time.sleep(0.05)
 
-        # Find if any card to activate (chain)
-        pos = imagesearch(folder+"activate_disabled.png")
-        if pos[0] > -1:
-            # Click card to activate
-            pa.click(x=667, y=793) 
-            pos = imagesearch(folder+"activate_enabled.png")
-            if pos[0] > -1:
-                click_image(folder+"activate_enabled.png", pos, "left", 0.1)
-            
-        # Confirm handler
-        pos = imagesearch(folder+"confirm_disabled.png")
-        # pos = imagesearch_loop_timeout(folder+"confirm_disabled.png", 0.1, 1.0)
-        if pos[0] > -1:
-            # Click to confirm
-            pa.click(x=667, y=793) 
-            pos = imagesearch(folder+"confirm_enabled.png")
-            if pos[0] > -1:
-                click_image(folder+"confirm_enabled.png", pos, "left", 0.1)
-
-        # Dialog box
-        pos = imagesearch_loop_timeout(folder+"yes.png", 0.1, 1.0)
-        if pos[0] > -1:
-            # Click to confirm
-            pa.click(x=667, y=793) 
-            pos = imagesearch(folder+"yes.png")
-            if pos[0] > -1:
-                click_image(folder+"yes.png", pos, "left", 0.1)
+        
             
         
         init_x = 737
@@ -117,7 +84,7 @@ while True:
                 # Change to attack position if any
                 if monster_exist:
                     monster = [958, 1084, 834]
-                    monster_pos_y = 663
+                    monster_pos_y = 580
 
                     for monster_pos in monster:
                         pa.click(x=monster_pos, y=monster_pos_y)
@@ -139,27 +106,12 @@ while True:
                     pa.click(x=pos_x + new_pos, y=init_y)
                     time.sleep(1)
 
-                    pos = imagesearch(folder+"special_summon.png")
-                    # pos = imagesearch_loop_timeout(folder+"special_summon.png", 0.1, 1)
-                    if (pos[0] > -1):
-                        click_image(folder+"special_summon.png", pos, "left", 0.1)
-                        counter = 0
-                        max_counter -= 1
-                        monster_exist = True
-                        # Confirm to special summon monster
-                        pos = imagesearch_loop_timeout(folder+"confirm_ss_disabled.png", 0.1, 5.0)
-                        if pos[0] > -1:
-                            # Click card to activate
-                            time.sleep(1)
-                            pa.click(x=836, y=559)
-                            pos = imagesearch_loop_timeout(folder+"confirm_ss_enabled.png", 0.1, 5.0)
-                            if pos[0] > -1:
-                                click_image(folder+"confirm_ss_enabled.png", pos, "left", 0.1)
+                    
                     
                     pos = imagesearch(folder+"normal_summon.png")
                     # pos = imagesearch_loop_timeout(folder+"normal_summon.png", 0.1, 1)
                     if (pos[0] > -1):
-                        click_image(folder+"normal_summon.png", pos, "left", 0.1)
+                        click_image(folder+"normal_summon.png", pos, "left", 0.3)
                         # wait action button to be show
                         pa.click(x=620, y=820)
                         imagesearch_loop_timeout(folder+"action.png", 0.1, 10.0)
@@ -167,22 +119,7 @@ while True:
                         max_counter -= 1
                         monster_exist = True
                     
-                    pos = imagesearch(folder+"activate.png")
-                    # pos = imagesearch_loop_timeout(folder+"activate.png", 0.1, 1)
-                    if (pos[0] > -1):
-                        if monster_exist:
-                            click_image(folder+"activate.png", pos, "left", 0.1)
-                            counter = 0
-                            max_counter -= 1
-                            # Confirm to select monster
-                            pos = imagesearch_loop_timeout(folder+"confirm_disabled.png", 0.1, 7.0)
-                            if pos[0] > -1:
-                                # Click card to activate
-                                pa.click(x=667, y=793) 
-                                pos = imagesearch(folder+"confirm_enabled.png")
-                                if pos[0] > -1:
-                                    click_image(folder+"confirm_enabled.png", pos, "left", 0.1)
-                            
+                    
                     pos = imagesearch(folder+"set.png")
                     # pos = imagesearch_loop_timeout(folder+"set.png", 0.1, 1.0)
                     if (pos[0] > -1):
@@ -191,7 +128,7 @@ while True:
                             equip_counter += 1
                             counter -= 1
                         else:
-                            click_image(folder+"set.png", pos, "left", 0.1)
+                            click_image(folder+"set.png", pos, "left", 0.2)
                             # wait action button to be show
                             pa.click(x=620, y=820)
                             imagesearch_loop(folder+"action.png", 0.1)
@@ -231,27 +168,27 @@ while True:
             # print("Action button found : ", pos[0], pos[1])
             # Click action button
             if pos[0] > -1:
-                click_image(folder+"action.png", pos, "left", 0.1)
+                click_image(folder+"action.png", pos, "left", 0.2)
                 # print("Action button clicked")
                 # Find Battle button
-                pos = imagesearch_loop_timeout(folder+"battle_phase.png", 0.1, 5.0)
+                pos = imagesearch_loop_timeout(folder+"battle_phase.png", 0.2, 5.0)
                 # print("Battle button found : ", pos[0], pos[1])
                 # Click Battle button
                 if pos[0] > -1:
-                    click_image(folder+"battle_phase.png", pos, "left", 0.1)
+                    click_image(folder+"battle_phase.png", pos, "left", 0.3)
                     # print("Battle button clicked")
 
                     # Attack
                     monster = [958, 1084, 834]
-                    monster_pos_y = 663
+                    monster_pos_y = 580
 
                     for monster_pos in monster:
                         pos = imagesearch_loop_timeout(folder+"action.png", 0.1, 30.0)
                         if pos[0] > -1:
                             pa.click(x=monster_pos, y=monster_pos_y)
-                            pos = imagesearch_loop_timeout(folder+"attack.png", 0.1, 2.0)
+                            pos = imagesearch_loop_timeout(folder+"attack.png", 0.2, 2.0)
                             if pos[0] > -1:
-                                click_image(folder+"attack.png", pos, "left", 0.1)
+                                click_image(folder+"attack.png", pos, "left", 0.2)
                                 # Confirm attack if there is more than 1 monster
                                 pos = imagesearch_loop_timeout(folder+"confirm_disabled.png", 0.1, 2.0)
                                 if pos[0] > -1:
@@ -259,14 +196,14 @@ while True:
                                     pa.click(x=667, y=793) 
                                     pos = imagesearch(folder+"confirm_enabled.png")
                                     if pos[0] > -1:
-                                        click_image(folder+"confirm_enabled.png", pos, "left", 0.1)
+                                        click_image(folder+"confirm_enabled.png", pos, "left", 0.2)
                 else:
                     # Find end phase button
                     pos = imagesearch_loop_timeout(folder+"end_phase.png", 0.1, 2)
                     # print("End phase button found : ", pos[0], pos[1])
                     # Click end phase button
                     if pos[0] > -1:
-                        click_image(folder+"end_phase.png", pos, "left", 0.1)
+                        click_image(folder+"end_phase.png", pos, "left", 0.2)
                         # print("End phase button clicked")
 
                 battle_phase_status = False
@@ -277,13 +214,13 @@ while True:
             # print("Action button found : ", pos[0], pos[1])
             # Click action button
             if pos[0] > -1:
-                click_image(folder+"action.png", pos, "left", 0.1)
+                click_image(folder+"action.png", pos, "left", 0.2)
                 # Find end phase button
                 pos = imagesearch_loop_timeout(folder+"end_phase.png", 0.1, 2)
                 # print("End phase button found : ", pos[0], pos[1])
                 # Click end phase button
                 if pos[0] > -1:
-                    click_image(folder+"end_phase.png", pos, "left", 0.1)
+                    click_image(folder+"end_phase.png", pos, "left", 0.2)
                     # print("End phase button clicked")
                     main_phase_status = True
             
@@ -291,6 +228,7 @@ while True:
         pos = imagesearch(folder+"ok.png")
         if pos[0] > -1:
             duel_counter += 1
+            print("isso")
             break
 
     for i in range(3):
@@ -301,7 +239,7 @@ while True:
 
     # Click ok button
     if pos[0] != -1:
-        click_image(folder+"ok.png", pos, "left", 0.1)
+        click_image(folder+"ok.png", pos, "left", 0.2)
     # print("OK button clicked")
 
     # Wait next button
@@ -312,7 +250,7 @@ while True:
             search = False
         for i in range(3):
             # pa.click(x=960, y=832)
-            pa.click(x=964, y=549)
+            pa.click(x=964, y=690)
             time.sleep(0.3)
         time.sleep(0.3)
     # print("Next button found")
