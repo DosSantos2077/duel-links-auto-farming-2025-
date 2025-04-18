@@ -5,7 +5,11 @@ folder = "./image/"
 character = "yami_yugi"
 duel_counter = 0
 
+max_duel = int(input("How many duels?: "))
+
 while True:
+    if duel_counter == max_duel:
+        break
 
     # Find gate button
     #pos = imagesearch_loop(folder+"gate.png", 1)
@@ -25,7 +29,14 @@ while True:
         click_image(folder+"duel.png", pos, "left", 0.5)
     print("Duel button clicked")
 
-    
+    # Find dialogue arrow #1
+    pos = imagesearch_loop(folder+"dialogue_arrow.png", 0.3)
+    print("dialogue arrow found : ", pos[0], pos[1])
+
+    # Click dialogue arrow #1
+    if pos[0] != -1:
+        click_image(folder+"dialogue_arrow.png", pos, "left", 0.5)
+    print("dialogue arrow clicked")
 
     # Find duel button #2
     pos = imagesearch_loop(folder+"duel.png", 0.3)
@@ -278,3 +289,43 @@ while True:
     if pos[0] != -1:
         click_image(folder+"next.png", pos, "left", 0.5)
     # print("Next button clicked")
+
+    # Find dialogue arrow #1
+    pos = imagesearch_loop(folder+"dialogue_arrow.png", 0.3)
+    print("dialogue arrow found : ", pos[0], pos[1])
+
+    # Click dialogue arrow #1
+    if pos[0] != -1:
+        click_image(folder+"dialogue_arrow.png", pos, "left", 0.5)
+    print("dialogue arrow clicked")
+
+    if duel_counter == max_duel:
+        pos = imagesearch_loop(folder+"exit_gate.png", 0.3)
+        print("Exit button found : ", pos[0], pos[1])
+
+        # Click exit gate arrow button 
+        if pos[0] != -1:
+            click_image(folder+"exit_gate.png", pos, "left", 0.5)
+        break
+
+
+#while True:
+    #pos = imagesearch_loop_timeout(folder+"auto_1d3.png", 0.3, 10, 7.0)
+    #print("auto duel found : ", pos[0], pos[1])
+
+    # Click arrow button to change location
+    #if pos[0] != -1:
+      #  click_image(folder+"auto_1d3.png", pos, "left", 0.5)
+     #   print("auto_duel clicked")
+
+    #pos = imagesearch_loop(folder+"arrow.png", 0.3)
+    #print("Arrow button found : ", pos[0], pos[1])
+
+    # Click arrow button to change location
+   # if pos[0] != -1:
+     #   click_image(folder+"arrow.png", pos, "left", 0.5)
+    #print("Arrow button clicked")
+
+
+
+
