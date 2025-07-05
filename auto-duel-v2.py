@@ -292,40 +292,26 @@ while True:
         click_image(folder+"next.png", pos, "left", 0.5)
     # print("Next button clicked")
 
-    # Wait next button
-    search = True
-    while search:
-        pos = imagesearch(folder+"next.png")
-        if pos[0] != -1:
-            search = False
-        for i in range(3):
-            # pa.click(x=960, y=832)
-            pa.click(x=960, y=119)
-            time.sleep(0.1)
-        time.sleep(0.3)
-    # print("Next button found")
+    pos = imagesearch_loop_timeout(folder+"caps.png", 0.1, 2)
 
-    # Click next button
+    while pos[0] != -1:
+        pa.click(x=960, y=119)
+        pos = imagesearch_loop_timeout(folder+"caps.png", 0.1, 2)
+
+    pos = imagesearch_loop_timeout(folder+"get.png", 0.1, 2)
+
     if pos[0] != -1:
-        click_image(folder+"next.png", pos, "left", 0.5)
-    # print("Next button clicked")
+        pa.click(x=960, y=119)
+        pos = imagesearch_loop_timeout(folder+"ok.png", 0.1, 2)  
 
-    search = True
-    while search:
-        pos = imagesearch(folder+"ok.png")
         if pos[0] != -1:
-            search = False
-        for i in range(3):
-            # pa.click(x=960, y=832)
-            pa.click(x=964, y=690)
-            time.sleep(0.3)
-        time.sleep(0.3)
-    # print("Next button found")
+            click_image(folder+"ok.png", pos, "left", 0.5)
 
-    # ok next button
+
+    pos = imagesearch_loop_timeout(folder+"next.png", 0.1, 2)  
+
     if pos[0] != -1:
-        click_image(folder+"ok.png", pos, "left", 0.5)
-    # print("ok button clicked")
+        click_image(folder+"next.png", pos, "left", 0.5)  
 
     # Find dialogue arrow #1
     pos = imagesearch_loop(folder+"dialogue_arrow.png", 0.3)
