@@ -292,6 +292,11 @@ while True:
         click_image(folder+"next.png", pos, "left", 0.5)
     # print("Next button clicked")
 
+    pos = imagesearch_loop_timeout(folder+"next.png", 0.1, 2)  
+
+    if pos[0] != -1:
+        click_image(folder+"next.png", pos, "left", 0.5)
+
     pos = imagesearch_loop_timeout(folder+"caps.png", 0.1, 2)
 
     while pos[0] != -1:
